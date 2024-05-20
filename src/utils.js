@@ -6,7 +6,9 @@ function initData() {
 
   for(let num = 1; num <= size; num++){
     for(let str = 1; str <= size; str++) {
-      data[numToKey(str) + num] = { input: "", display: "", }
+      const dataObj =  { input: "", display: "", }
+      data[numToKey(str) + num] = dataObj
+      data[num + numToKey(str)] = dataObj // enable using A13 or 13A (cause I kept doing it wrong)
     }
   }
 

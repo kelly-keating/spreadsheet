@@ -35,5 +35,5 @@
   - onload check if data stored or save flag exists
     - if not modal to ask if save to browser
   - if asked don't ask again but lil toggle in header
-
-TODO: styling on that input
+- create reference map for simple updating (& perhaps loop catching)
+- redirect doesn't correct user input just forgive it

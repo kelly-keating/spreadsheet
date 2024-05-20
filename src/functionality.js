@@ -1,11 +1,9 @@
 const data = initData()
 const getData = (row, col) => data[col + row]
 const setData = (row, col, vals) => {
-  const currentData = data[col + row]
-  data[col + row] = {
-    ...currentData,
-    ...vals,
-  }
+  Object.keys(vals).forEach(key => {
+    data[col + row][key] = vals[key]
+  })
 }
 
 function handleSelect(elem) {
