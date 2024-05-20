@@ -1,10 +1,10 @@
 # notes / thoughts
 
-## 2. the grid
+<!-- ## 2. the grid
 
 - table vs divs. table makes sense
 - inner work can be manipulated inputs vs display
-- helper AA
+- helper AA -->
 
 ## 3. enter data
 
@@ -27,3 +27,8 @@
 
 - buttons / header
 - colors on errs?
+
+## OTHER
+
+- form validation
+- localstorage

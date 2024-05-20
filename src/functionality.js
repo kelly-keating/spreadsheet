@@ -1,25 +1,31 @@
 const data = initData()
+const setData = (row, col, val) => data[row - 1][col] = val
+const getData = (row, col) => data[row - 1][col]
 
 function handleSelect(elem) {
   const [row, col] = elem.id.split("-")
-  const currentVal = data[row][col]
+  const currentVal = getData(row, col)
   
   const isActive = elem.classList.contains("active")
 
   if (!isActive) {
     elem.classList.toggle("active")
-    // FIXME: to fix refresh submit, button is a fake, means we can't submit though
-    // BUG: focus not focusing
-    // BUG: value not valueing
-    // BUG: close not closing
-    const submitFn = `handleSubmit(this, '${row}', '${col}')`
-    elem.innerHTML = `<form onsubmit="${submitFn}" onfocusout="${submitFn}"><input type="text" value="${currentVal}" /><button type="submit" disabled style="display: none" aria-hidden="true"></button></form>`
+    const submitFn = `handleSubmit(this, '${row}', '${col}'); return false`   // return false prevents default submit
+    elem.innerHTML = `
+      <form onsubmit="${submitFn}" onfocusout="${submitFn}">
+        <input id="${row}-${col}_input" type="text" />
+      </form>
+    `
+
+    const input = document.getElementById(row + "-" + col + "_input")
+    input.focus()
+    input.value = currentVal
   }
 }
 
 function handleSubmit(elem, row, col) {
   const inputStr = elem[0].value
-  data[row - 1][col] = inputStr
+  setData(row, col, inputStr)
   
   const cell = document.getElementById(row + "-" + col)
   cell.classList.remove("active")
