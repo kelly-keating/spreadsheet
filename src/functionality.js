@@ -31,3 +31,7 @@ function handleSubmit(elem, row, col) {
   cell.classList.remove("active")
   cell.innerHTML = inputStr
 }
+
+function refresh() {
+  createBoard(100)
+}

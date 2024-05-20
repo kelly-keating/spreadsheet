@@ -24,7 +24,8 @@ function getCell(row, col) {
   if (row == 0) return `<th class="heading_col">${colKey}</th>`
   if (col == 0) return `<th class="heading_row">${row}</th>`
 
-  return `<td class="cell" id="${row}-${colKey}" onclick="handleSelect(this)"></td>`
+  const value = getData(row, colKey)
+  return `<td class="cell" id="${row}-${colKey}" onclick="handleSelect(this)">${value}</td>`
 }
 
 createBoard(100)

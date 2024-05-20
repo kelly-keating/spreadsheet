@@ -6,14 +6,14 @@
 - inner work can be manipulated inputs vs display
 - helper AA -->
 
-## 3. enter data
+<!-- ## 3. enter data
 
 - access?
   - inputs always present? surely too much
   - separate input like sheets
   - onclick switch
 - data matrix, start data, but hold forms as well complex object
-- lost on refresh, but we could keep tbh
+- lost on refresh, but we could keep tbh -->
 
 ## 5. forms
 
