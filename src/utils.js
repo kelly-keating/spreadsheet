@@ -1,30 +1,20 @@
-function createBoard(size) {
-  const root = document.getElementsByClassName("grid_container")[0]
-  let entireTable = "<table>"
-  for(let row = 0; row <= size; row++) {
-    entireTable += getRow(row, size)
+function initData() {
+  const size = 100
+  const data = []
+
+  const getObj = () => {
+    const obj = {}
+    for(let val = 1; val <= size; val++){
+      obj[numToKey(val)] = ""
+    }
+    return obj
   }
-  entireTable += "</table>"
-  root.innerHTML = entireTable
-}
 
-function getRow(row, size) {
-  let entireRow = "<tr>"
-  for (let col = 0; col <= size; col++) {
-    entireRow += getCell(row, col);
+  for(let idx = 0; idx < size; idx++){
+    data.push(getObj())
   }
-  entireRow += "</tr>"
-  return entireRow
-}
 
-function getCell(row, col) {
-  const colKey = numToKey(col)
-
-  if (row == 0 && col == 0) return "<th></th>"
-  if (row == 0) return `<th class="heading_col">${colKey}</th>`
-  if (col == 0) return `<th class="heading_row">${row}</th>`
-
-  return `<td class="cell" id="${row + colKey}">${row + colKey}</td>`
+  return data
 }
 
 function numToKey(n) {
@@ -37,12 +27,11 @@ function numToKey(n) {
   return alpha[ten] + (one == 0 ? "Z" : alpha[one])
 }
 
-createBoard(100)
-
 // ------------------------------------
 // --- numToKey is being a problem ----
 // ------------------------------------
 
+/*
 function test() {
   const fails = []
 
@@ -68,3 +57,4 @@ function test() {
 }
 
 test()
+*/
