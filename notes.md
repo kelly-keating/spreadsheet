@@ -32,7 +32,7 @@ Some thoughts on ways we could fix this:
 
 For me number two is my go to. I likely would have done number one if I thought I could fit it in to this challenge time-wise, but as I will no longer be working to time with this one, having trees of references will be a lot more efficient than loop after loop and better for DOM updates too.
 
-Though to be honest there's lot of little tweaks (like saving our data) that I might do first cause they've annoyed me throughout this as their easily solvable, but got put on the back burner as they weren't the goals that were set.
+Though to be honest there's lot of little tweaks (like saving our data) that I might do first cause they've annoyed me throughout this as they're easily solvable, but got put on the back burner as they weren't the goals that were set.
 
 ## Last steps
 

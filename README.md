@@ -11,29 +11,29 @@ We are looking to see: how you approach the problem, how you learned new things,
 the problem (or set about to solve it), and as much working code as possible.
 
 ## Steps:
-[x] Create index.html in your favourite text editor. Use pure JavaScript in your code – no JavaScript
+* [x] Create index.html in your favourite text editor. Use pure JavaScript in your code – no JavaScript
 libraries or frameworks. Your JavaScript can either be in a separate .js file, or it can be contained in
 the index.html page.
 
-[x] When loading index.html into Chrome or Firefox, it should draw a 100x100 grid of cells, with
+* [x] When loading index.html into Chrome or Firefox, it should draw a 100x100 grid of cells, with
 columns labelled A-Z, AA, AB, AC, etc. and rows numbered 1 to 100.
 
-[x] When you click in a cell and enter a number, it should store the number in a JavaScript object
+* [x] When you click in a cell and enter a number, it should store the number in a JavaScript object
 (note: this would be lost when you refresh the page).
 
-[x] Have a refresh button that redraws the grid (without refreshing the page) and inserts data into
+* [x] Have a refresh button that redraws the grid (without refreshing the page) and inserts data into
 cells where you've saved it.
 
-[x] Add support for some basic formulas. For example if you enter "=A1+A2" into A3 it should
+* [x] Add support for some basic formulas. For example if you enter "=A1+A2" into A3 it should
 calculate the sum of these two cells and display the result in A3.
 
-[ ] Updating A1 would update A3.
+* [ ] Updating A1 would update A3.
 
-[ ] Add support for some basic functions. For example if you enter "=sum(A1:A10)" into A11, then it
+* [ ] Add support for some basic functions. For example if you enter "=sum(A1:A10)" into A11, then it
 should calculate the sum of all cells in the range and display the result in A11. Updating any value in
 the range would recalculate A11.
 
-[ ] Add support for formatting, for example bold, italics and underline
+* [ ] Add support for formatting, for example bold, italics and underline
 
 ## Submitting your code
 
