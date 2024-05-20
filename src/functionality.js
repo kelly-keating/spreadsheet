@@ -1,6 +1,12 @@
 const data = initData()
-const setData = (row, col, val) => data[col + row] = val
 const getData = (row, col) => data[col + row]
+const setData = (row, col, vals) => {
+  const currentData = data[col + row]
+  data[col + row] = {
+    ...currentData,
+    ...vals,
+  }
+}
 
 function handleSelect(elem) {
   const [row, col] = elem.id.split("-")
@@ -25,32 +31,29 @@ function handleSelect(elem) {
 
 function handleSubmit(elem, row, col) {
   const input = elem[0].value.replace(/\s+/g, '').toUpperCase()
-  const dataObj = {
-    input,
-    display: "",
-  }
+  setData(row, col, { input })
+
+  setDisplayValue(row, col)
+  document.getElementById(row + "-" + col).classList.remove("active")
+}
+
+function setDisplayValue(row, col) {
+  const input = getData(row, col).input
+  let display = ""
 
   if (isNumber(input)) {
-    dataObj.display = input
+    display = input
   } else if (isSimpleRef(input)) {
     const ref = input.replace("=", "")
-    dataObj.display = data[ref].display
+    display = data[ref].display
+  } else if (isValidFormula(input)) {
+    display = evalFormula(input)
   } else {
-    dataObj.display = "#ERR invalid input"
+    display = "#ERR invalid input"
   }
-  setData(row, col, dataObj)
 
-  const cell = document.getElementById(row + "-" + col)
-  cell.classList.remove("active")
-  cell.innerHTML = dataObj.display
-}
-
-function isNumber(n) {
-  return !isNaN(n)
-}
-function isSimpleRef(str) {
-  const [gap, ref, ...theRest] = str.split("=")
-  return gap === "" && Boolean(data[ref]) && theRest.length === 0
+  setData(row, col, { display })
+  document.getElementById(row + "-" + col).innerHTML = display
 }
 
 function refresh() {

@@ -1,3 +1,5 @@
+// ----- DATA -----
+
 function initData() {
   const size = 100
   const data = {}
@@ -10,6 +12,36 @@ function initData() {
 
   return data
 }
+
+// ----- INPUTS -----
+
+function isNumber(n) {
+  return !isNaN(n)
+}
+
+function isSimpleRef(str) {
+  const [gap, ref, ...theRest] = str.split("=")
+  return gap === "" && Boolean(data[ref]) && theRest.length === 0
+}
+
+function isValidFormula(str) {
+  const [gap, frm, ...theRest] = str.split("=")
+  if(gap !== "" || theRest.length !== 0) return false
+
+  const refs = frm.split(/[\+\-\*\/]/)
+  for(const r of refs){
+    if(!data[r] && isNaN(r)) return false
+  }
+  return true
+}
+
+function evalFormula(input) {
+  const frm = input.replace("=", "").split(/([+\-*/])/)
+  const res = frm.map(ref => data[ref]?.display || ref).join("")
+  return eval(res)
+}
+
+// ----- COLUMN LABELS -----
 
 function numToKey(n) {
   const alpha = " ABCDEFGHIJKLMNOPQRSTUVWXYZ"
