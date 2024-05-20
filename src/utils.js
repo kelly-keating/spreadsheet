@@ -1,17 +1,11 @@
 function initData() {
   const size = 100
-  const data = []
+  const data = {}
 
-  const getObj = () => {
-    const obj = {}
-    for(let val = 1; val <= size; val++){
-      obj[numToKey(val)] = ""
+  for(let num = 1; num <= size; num++){
+    for(let str = 1; str <= size; str++) {
+      data[numToKey(str) + num] = { input: "", display: "", }
     }
-    return obj
-  }
-
-  for(let idx = 0; idx < size; idx++){
-    data.push(getObj())
   }
 
   return data
@@ -24,7 +18,7 @@ function numToKey(n) {
   const ten = Math.floor((n - 1) / 26)
   const one = n % 26
 
-  return alpha[ten] + (one == 0 ? "Z" : alpha[one])
+  return alpha[ten] + (one === 0 ? "Z" : alpha[one])
 }
 
 // ------------------------------------

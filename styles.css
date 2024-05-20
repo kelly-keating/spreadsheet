@@ -31,7 +31,7 @@ tr:nth-child(even) {background-color: #D6EEEE;}
 td:hover {background-color: #cfcfcf;}
 
 td input {
-  width: 100%;
+  width: 100px;
   padding: none;
   border: none;
   background-color: #bada55;

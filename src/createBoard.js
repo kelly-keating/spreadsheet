@@ -20,11 +20,11 @@ function getRow(row, size) {
 function getCell(row, col) {
   const colKey = numToKey(col)
 
-  if (row == 0 && col == 0) return '<th class="heading_col heading_row"></th>'
-  if (row == 0) return `<th class="heading_col">${colKey}</th>`
-  if (col == 0) return `<th class="heading_row">${row}</th>`
+  if (row === 0 && col === 0) return '<th class="heading_col heading_row"></th>'
+  if (row === 0) return `<th class="heading_col">${colKey}</th>`
+  if (col === 0) return `<th class="heading_row">${row}</th>`
 
-  const value = getData(row, colKey)
+  const value = getData(row, colKey).display
   return `<td class="cell" id="${row}-${colKey}" onclick="handleSelect(this)">${value}</td>`
 }
 
