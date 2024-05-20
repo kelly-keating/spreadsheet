@@ -7,6 +7,22 @@ body {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 25px);
+  padding: 0 15px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.grid_container {
+  margin-top: 70px;
+}
+
 table, th, td {
   border-collapse: collapse;
   border: 1px solid slategrey;
