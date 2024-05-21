@@ -50,5 +50,12 @@ td input {
   width: 50px;
   padding: none;
   border: none;
+  /* background-color: #bada55; */
+}
+
+.active {
+  background-color: #bada55;
+}
+.active:hover {
   background-color: #bada55;
 }

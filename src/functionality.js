@@ -1,30 +1,45 @@
+let activeCell = null
+
 function handleSelect(elem) {
-  const [row, col] = elem.id.split("-")
-  const currentVal = getData(row, col).input
-  
-  const isActive = elem.classList.contains("active")
+  if (activeCell !== elem.id) {
+    if (activeCell) deactivate(activeCell)
 
-  if (!isActive) {
-    elem.classList.toggle("active")
-    const submitFn = `handleSubmit(this, '${row}', '${col}'); return false` // return false prevents default submit
-    elem.innerHTML = `
-      <form onsubmit="${submitFn}" onfocusout="${submitFn}">
-        <input id="${row}-${col}_input" type="text" />
-      </form>
-    `
-
-    const input = document.getElementById(row + "-" + col + "_input")
-    input.focus()
-    input.value = currentVal
+    activeCell = elem.id
+    elem.classList.add("active")
+  } else {
+    activateInput(elem.id, elem)
   }
 }
 
-function handleSubmit(elem, row, col) {
+function activateInput (id, elem) {
+  const [row, col] = id.split("-")
+  if (!elem) elem = document.getElementById(id)
+
+  const submitFn = (done) => `handleSubmit(this, '${row}', '${col}', ${done}); return false` // return false prevents default submit
+  elem.innerHTML = `
+    <form onsubmit="${submitFn(true)}" onfocusout="${submitFn(false)}">
+      <input id="${id}_input" type="text" />
+    </form>
+  `
+
+  const currentVal = getData(row, col).input
+  const input = document.getElementById(id + "_input")
+  input.focus()
+  input.value = currentVal
+}
+
+function deactivate(id) {
+  const currentCell = document.getElementById(id)
+  currentCell.classList.remove("active")
+  activeCell = null
+}
+
+function handleSubmit(elem, row, col, done) {
   const input = elem[0].value.replace(/\s+/g, '').toUpperCase()
   setData(row, col, { input })
 
   setDisplayValue(row, col)
-  document.getElementById(row + "-" + col).classList.remove("active")
+  if (done) document.getElementById(row + "-" + col).classList.remove("active")
 }
 
 function setDisplayValue(row, col) {
