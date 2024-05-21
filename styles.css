@@ -50,22 +50,16 @@ td input {
   width: 50px;
   padding: none;
   border: none;
-  /* background-color: #bada55; */
 }
 
-.active {
-  background-color: #bada55;
-}
-.active:hover {
+.active, .active:hover {
   background-color: #bada55;
 }
 
-.bold {
-  font-weight: bolder;
-}
-.italic {
-  font-style: italic;
-}
-.underline {
-  text-decoration: underline;
-}
+.bold {font-weight: bolder;}
+.italic {font-style: italic;}
+.underline {text-decoration: underline;}
+
+.justify_left td {text-align: left;}
+.justify_center td {text-align: center;}
+.justify_right td {text-align: right;}

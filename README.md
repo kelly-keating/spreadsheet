@@ -33,7 +33,7 @@ calculate the sum of these two cells and display the result in A3.
 should calculate the sum of all cells in the range and display the result in A11. Updating any value in
 the range would recalculate A11.
 
-* [ ] Add support for formatting, for example bold, italics and underline
+* [x] Add support for formatting, for example bold, italics and underline
 
 ## Submitting your code
 
