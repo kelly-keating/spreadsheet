@@ -1,3 +1,8 @@
+function setStyle(style) {
+  const elem = document.getElementById(activeCell)
+  elem.classList.toggle(style)
+}
+
 // ----- INPUTS -----
 
 function isNumber(n) {

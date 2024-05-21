@@ -2,10 +2,11 @@ let activeCell = null
 
 function handleSelect(elem) {
   if (activeCell !== elem.id) {
-    if (activeCell) deactivate(activeCell)
+    if (activeCell) deactivateCell(activeCell)
 
     activeCell = elem.id
     elem.classList.add("active")
+    activateToolbar()
   } else {
     activateInput(elem.id, elem)
   }
@@ -28,10 +29,15 @@ function activateInput (id, elem) {
   input.value = currentVal
 }
 
-function deactivate(id) {
+function deactivateCell(id) {
   const currentCell = document.getElementById(id)
   currentCell.classList.remove("active")
   activeCell = null
+}
+
+function activateToolbar() {
+  const buttons = document.querySelectorAll(".toolbar button")
+  buttons.forEach(button => button.disabled = false)
 }
 
 function handleSubmit(elem, row, col, done) {

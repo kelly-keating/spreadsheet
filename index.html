@@ -16,8 +16,10 @@
 <body>
   <header>
     <h1>Totally working spreadsheet</h1>
-    <div>
-      <button disabled>Save</button>
+    <div class="toolbar">
+      <button disabled onclick="setStyle('bold')" class="bold">B</button>
+      <button disabled onclick="setStyle('italic')" class="italic">I</button>
+      <button disabled onclick="setStyle('underline')" class="underline">U</button>
     </div>
   </header>
   <div class="grid_container">

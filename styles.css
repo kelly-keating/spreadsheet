@@ -59,3 +59,13 @@ td input {
 .active:hover {
   background-color: #bada55;
 }
+
+.bold {
+  font-weight: bolder;
+}
+.italic {
+  font-style: italic;
+}
+.underline {
+  text-decoration: underline;
+}
