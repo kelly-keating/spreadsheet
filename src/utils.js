@@ -1,6 +1,11 @@
 function setStyle(style) {
   const elem = document.getElementById(activeCell)
   elem.classList.toggle(style)
+
+  const [row, col] = activeCell.split("-")
+  setData(row, col, {
+    [style]: true
+  })
 }
 
 // ----- INPUTS -----

@@ -25,6 +25,12 @@ function getCell(row, col) {
   if (row === 0) return `<th class="heading_col">${colKey}</th>`
   if (col === 0) return `<th class="heading_row">${row}</th>`
 
-  const value = getData(row, colKey).display
-  return `<td class="cell" id="${row}-${colKey}" onclick="handleSelect(this)">${value}</td>`
+  const cellData = getData(row, colKey)
+  
+  let classes = "cell"
+  if (cellData.bold) classes += " bold"
+  if (cellData.italic) classes += " italic"
+  if (cellData.underline) classes += " underline"
+
+  return `<td class="${classes}" id="${row}-${colKey}" onclick="handleSelect(this)">${cellData.display}</td>`
 }
