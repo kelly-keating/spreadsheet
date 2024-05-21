@@ -1,11 +1,3 @@
-const data = initData()
-const getData = (row, col) => data[col + row]
-const setData = (row, col, vals) => {
-  Object.keys(vals).forEach(key => {
-    data[col + row][key] = vals[key]
-  })
-}
-
 function handleSelect(elem) {
   const [row, col] = elem.id.split("-")
   const currentVal = getData(row, col).input
@@ -52,8 +44,4 @@ function setDisplayValue(row, col) {
 
   setData(row, col, { display })
   document.getElementById(row + "-" + col).innerHTML = display
-}
-
-function refresh() {
-  createBoard(100)
 }

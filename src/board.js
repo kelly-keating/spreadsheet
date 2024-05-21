@@ -1,10 +1,11 @@
 function createBoard(size) {
-  const root = document.getElementsByClassName("grid_container")[0]
   let entireTable = "<table>"
   for(let row = 0; row <= size; row++) {
     entireTable += getRow(row, size)
   }
   entireTable += "</table>"
+  
+  const root = document.getElementsByClassName("grid_container")[0]
   root.innerHTML = entireTable
 }
 
@@ -27,5 +28,3 @@ function getCell(row, col) {
   const value = getData(row, colKey).display
   return `<td class="cell" id="${row}-${colKey}" onclick="handleSelect(this)">${value}</td>`
 }
-
-createBoard(100)
