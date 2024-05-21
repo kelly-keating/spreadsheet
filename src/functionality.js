@@ -12,13 +12,54 @@ function handleSelect(elem) {
   }
 }
 
+function handleSubmit(elem, row, col) {
+  setData(row, col, { error: null })
+  const input = standardiseInput(elem[0].value)
+
+  if (input !== getData(row, col).input) {
+    setData(row, col, { input })
+    rerender(row, col, [])
+  } else {
+    const currentDisplay = getData(row, col).display
+    document.getElementById(row + "-" + col).innerHTML = currentDisplay
+  }
+}
+
+// ----- DATA UPDATES -----
+
+function rerender(row, col, updated) {
+  console.log(row, col)
+  if (updated.includes(col + row)) return // stop after loop updated
+  const {input, referencedBy} = getData(row, col)
+  let display = ""
+
+  if (isNumber(input)) {
+    updateRefs(col + row, [])
+    display = input
+  } else if (isSimpleFormula(input)) {
+    display = evalFormula(input, col + row)
+  } else {
+    const error = "#ERR invalid input"
+    setData(row, col, { error })
+    display = error
+  }
+
+  setData(row, col, { display })
+  updated.push(col + row)
+
+  referencedBy.forEach(ref => rerender(data[ref].row, data[ref].col, updated))
+  document.getElementById(row + "-" + col).innerHTML = display
+}
+
+// ----- STATE CHANGES -----
+
 function activateInput (id, elem) {
   const [row, col] = id.split("-")
   if (!elem) elem = document.getElementById(id)
 
-  const submitFn = (done) => `handleSubmit(this, '${row}', '${col}', ${done}); return false` // return false prevents default submit
+  const submitFn = `handleSubmit(this, '${row}', '${col}'); return false` // return false prevents default submit
   elem.innerHTML = `
-    <form onsubmit="${submitFn(true)}" onfocusout="${submitFn(false)}">
+    <form onsubmit="${submitFn}" onfocusout="${submitFn}">
       <input id="${id}_input" type="text" />
     </form>
   `
@@ -40,29 +81,12 @@ function activateToolbar() {
   buttons.forEach(button => button.disabled = false)
 }
 
-function handleSubmit(elem, row, col, done) {
-  const input = elem[0].value.replace(/\s+/g, '').toUpperCase()
-  setData(row, col, { input })
+function setStyle(style) {
+  const elem = document.getElementById(activeCell)
+  elem.classList.toggle(style)
 
-  setDisplayValue(row, col)
-  if (done) document.getElementById(row + "-" + col).classList.remove("active")
-}
-
-function setDisplayValue(row, col) {
-  const input = getData(row, col).input
-  let display = ""
-
-  if (isNumber(input)) {
-    display = input
-  } else if (isSimpleRef(input)) {
-    const ref = input.replace("=", "")
-    display = data[ref].display
-  } else if (isValidFormula(input)) {
-    display = evalFormula(input)
-  } else {
-    display = "#ERR invalid input"
-  }
-
-  setData(row, col, { display })
-  document.getElementById(row + "-" + col).innerHTML = display
+  const [row, col] = activeCell.split("-")
+  setData(row, col, {
+    [style]: true
+  })
 }

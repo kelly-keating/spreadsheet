@@ -27,7 +27,7 @@ cells where you've saved it.
 * [x] Add support for some basic formulas. For example if you enter "=A1+A2" into A3 it should
 calculate the sum of these two cells and display the result in A3.
 
-* [ ] Updating A1 would update A3.
+* [x] Updating A1 would update A3.
 
 * [ ] Add support for some basic functions. For example if you enter "=sum(A1:A10)" into A11, then it
 should calculate the sum of all cells in the range and display the result in A11. Updating any value in
